@@ -1,6 +1,6 @@
 user := $(shell id -u)
 group := $(shell id -g)
-dc := docker-compose
+dc := USER_ID=$(user) GROUP_ID=$(group) docker-compose
 dr := $(dc) run --rm
 de := docker-compose exec
 sy := $(de) php bin/console
