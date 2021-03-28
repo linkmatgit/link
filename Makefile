@@ -20,7 +20,6 @@ build-docker:
 	$(dc) pull --ignore-pull-failures
 	$(dc) build php
 	$(dc) build node
-	$(dc) build nginx
 
 .PHONY: dev
 dev: vendor/autoload.php node_modules/time ## Lance le serveur de développement

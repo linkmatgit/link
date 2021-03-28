@@ -33,5 +33,12 @@ ARG GROUP_ID
 RUN groupadd -f --gid 1000 user
 RUN adduser --disabled-password --gecos '' --uid 1000 --gid 1000 user
 USER user
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 WORKDIR /var/www
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+RUN ["chmod", "+x", "/docker-entrypoint.sh"]
+
+CMD ["composer"]
