@@ -11,18 +11,18 @@ jobs:
         php-versions: ['8.0']
         node-version: [ '14.7' ]
     services:
-      mysql:
-        image: mysql:8.0
+      pgsql:
+        image: postgres:12-alpine
         env:
-          MYSQL_ROOT_PASSWORD: 'Password123!'
+          POSTGRES_PASSWORD: linkmat
+          POSTGRES_USER: linkmat
+          POSTGRES_DB: linkmat
 
         ports:
           - 3306:3306
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring, xml, ctype, iconv, intl
@@ -43,7 +43,7 @@ jobs:
       - name: Analyze
         run: make lint
       - name: Tests
-        run: make tests
+        run: make test
       - name: Send code coverage
         uses: codecov/codecov-action@v1
         continue-on-error: true
