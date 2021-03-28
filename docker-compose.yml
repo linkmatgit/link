@@ -13,7 +13,8 @@ services:
   php:
     user: '${USER_ID}:${GROUP_ID}'
     restart: unless-stopped
-    image: grafikart/php:1.0.4
+    build:
+      context: ./tools/docker/php
     volumes:
       - .:/var/www:delegated
     depends_on:
