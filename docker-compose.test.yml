@@ -1,7 +1,6 @@
 version: '3.3'
 services:
   phptest:
-    user: '${USER_ID}:${GROUP_ID}'
     build:
       context: ./tools/docker/php
     volumes:
